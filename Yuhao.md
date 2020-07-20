@@ -1,8 +1,0 @@
-﻿# DeakinIntern2020
-## 20 July 2020
-### What I learn today
-* Install MySQL and build MySQL environment
-* Install VSCode
-* Know about phpmyadmin
-* Grammar of Markdown
-* How to use Git and Github to pull, push, clone and add file
