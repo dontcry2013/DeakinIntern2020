@@ -13,5 +13,9 @@ git commit -m/-am 'what you want to metion here'----- -m is add. -am is update
 git remote add origin https://github.com/dontcry2013/DeakinIntern2020.git 
 git push -u origin master -------- push file to Github
 ```
-* Know phpmyadmin
+* Know about phpmyadmin
 (https://blog.csdn.net/u012767761/article/details/78238487)
+
+### The future work
+* find a way to import .csv file to MySql
+* learn how to use phpmyadmin
