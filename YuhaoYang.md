@@ -8,10 +8,10 @@
 * How to use Git and Github
 ```
 git status ----- check the git status
-git add FILENAME------- add file
+git add FILENAME ------- add file
 git commit -m/-am 'what you want to metion here'----- -m is add. -am is update
-git remote add origin https://github.com/dontcry2013/DeakinIntern2020.git
-git push -u origin master
+git remote add origin https://github.com/dontcry2013/DeakinIntern2020.git 
+git push -u origin master -------- push file to Github
 ```
 * Know phpmyadmin
 (https://blog.csdn.net/u012767761/article/details/78238487)
