@@ -31,7 +31,46 @@ Day1
     . git push :推送更改的文件  
     . git push -u origin master: 推送到远程仓库
     . git log : 查看提交历史  
-    + Basic git commands tutorial : https://www.runoob.com/git/git-tutorial.html 
+    + Basic git commands tutorial : https://www.runoob.com/git/git-tutorial.html   
+
+    
+    
+* * *  
 
 
-  
+
+ Day2
+
+## Learned on July 27
+
+* ###  mySQL  
+
+     +  Learn how to import csv files into mysql   
+        > Use code to import data into mysql
+        >> mysqlimport --ignore-lines=1(Ignore the first line) --fields-terminated-by=,(Separation character number between data) --local -u deakin-intern(username) -p test(database name) -h mel.cloudcampus.com.au graduation_direction.csv(your csv file name)  
+          
+
+* ### phpmyadmin
+     +   Learn how to create a data table in phpmyadmin
+     +   Use phpmyadmin to import the csv file into the database   
+         > Download the data to be imported (probably an xls file)  
+
+         >  Convert XLS files to csv format
+         >>Save XLS file as csv format  
+         >>Open csv file with text document  
+         >>Save the file as a file whose encoding is UTF-8  
+
+         > Back to phpmyadmin, select "Import"   
+         >Import the newly encoded file  
+         >Cancel the selection in "Partial import "   
+         > Select "Enable foreign key checks"  
+         > Change the format to csv using LOAD DATA  
+         > Change Columns separated with: ";" to ","    
+          >choose Using the LOCAL keyword  
+          > Import
+
+* ### Markdown
+     + Learn new commands  
+     (link: https://www.runoob.com/markdown/md-paragraph.html).
+
+
