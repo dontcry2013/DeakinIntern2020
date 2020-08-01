@@ -4,8 +4,8 @@
 ###Learned knowledge
 * Git & Github
      git clone [url] :克隆链接中的项目     
-     git add :将文件添加到缓存 \n   
-     git status : 看上次提交后是否有修改\n
+     git add :将文件添加到缓存 
+     git status : 看上次提交后是否有修改
      git reset HEAD :取消已缓存的内容
      git rm（-f）加文件名 ：删除文件（强制删除）
      git mv ：移动或重命名文件 
