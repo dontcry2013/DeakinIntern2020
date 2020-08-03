@@ -47,3 +47,13 @@ mysqlimport --ignore-lines=1(Ignore the first line) --fields-terminated-by=,(Sep
 9. choose Using the LOCAL keyword
 10. done
 ```
+## 03 August 2020
+### What I learn today
+* How to use AEMG server
+```
+1. create new project in Class Timetable
+2. add sessions in new project
+3. click quick arrange
+4. Fill in the appropriate spaces according to the class schedule
+
+```
