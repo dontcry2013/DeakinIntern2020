@@ -24,7 +24,8 @@
  1. Linux Code
  2. phpMyAdmin 
 
-##Day2(2020/7/30)
+
+## Day2(2020/7/30)
 
 * Learned how to import the data from the questionnaire star into the database.
 
@@ -63,3 +64,14 @@
 ### future plan
  
  Conduct more instance operations to consolidate the knowledge and operation process, and record the problems encountered in the operation.
+ 
+ 
+
+ ## Day3（2020/8/6）
+ 
+* How to use AEMG server
+
+1. create new project in Class Timetable
+2. add sessions in new project and click quick arrange
+3. Fill in the appropriate spaces according to the class schedule
+
