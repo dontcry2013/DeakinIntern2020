@@ -1,7 +1,7 @@
 # Learning report
 ## Day1(2020/7/23)
 
-###Learned knowledge
+### Learned knowledge
 * Git & Github
      git clone [url] :克隆链接中的项目     
      git add :将文件添加到缓存 
