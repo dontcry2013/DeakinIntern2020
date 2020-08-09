@@ -71,6 +71,27 @@ Day1
 
 * ### Markdown
      + Learn new commands  
-     (link: https://www.runoob.com/markdown/md-paragraph.html).
+     (link: https://www.runoob.com/markdown/md-paragraph.html).  
+     
+    
+     * * * 
+
+
+ Day3
+
+## Learned on Aug 03
+
+* ###   AEMG server  
+
+     +  Learn how to use AEMG server 
+     >How to create a new course schedule  
+     >> -Select the matching project.  
+     >> -Select the correct academic year, course start time,  week length , etc.  
+     >>-Set course start and end times  
+     +  Learn how to use Quick Arrange
+
+     > Double-click to add a classroom, course, teacher, etc.  
+     >Click it to set to the specified time  
+     >Right-click to deselect
 
 
