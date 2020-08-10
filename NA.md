@@ -95,3 +95,29 @@ Day1
      >Right-click to deselect
 
 
+ Day4
+
+## Learned on Aug 10
+
+* ###   AEMG server  
+     +   use Quick Arrange
+     >Use the "Quick Arrange" feature to check and add new classrooms to the system  
+
+     >Due to the save function being temporarily not working, data may be lost, so new download buttons have been added to make sure the entered information is not lost.   
+
+     >When filling schedules, left click to place information, right click to cancel 
+
+* ###   SheetJS 
+  +   Learn SheetJS and learn how to convert xlsx to json and save it to a database.  
+
+    > The learning information is available at: https://sheetjs.com/demo
+
+    > XLSX.utils.sheet_to_csv generates CSV  
+    >XLSX.utils.sheet_to_txt generates UTF16  
+    >XLSX.utils.sheet_to_html generates HTML  
+    >XLSX.utils.sheet_to_json generates an array of objects  
+    >XLSX.utils.sheet_to_formulae generates a list of formulae
+  
+
+
+
