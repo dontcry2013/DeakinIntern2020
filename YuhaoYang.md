@@ -55,5 +55,11 @@ mysqlimport --ignore-lines=1(Ignore the first line) --fields-terminated-by=,(Sep
 2. add sessions in new project
 3. click quick arrange
 4. Fill in the appropriate spaces according to the class schedule
-
 ```
+## 10 Augest 2020
+### Update 
+1. All classrooms that need to be used have been organized and added to the system.
+2. Since the save button may cause data loss, press the download button to download the data before saving again so that no data is lost.
+
+### Future work
+study https://sheetjs.com/demo
