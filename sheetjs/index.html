@@ -270,8 +270,12 @@
           var options = { type: 'array' };
           var workbook = XLSX.read(arrayBuffer, options);
           console.timeEnd();
-
-          var sheetName = workbook.SheetNames[0];
+          var sheetName;
+          if(Array.isArray(workbook.SheetNames)){
+            sheetName = workbook.SheetNames[0];
+          } else{
+            sheetName = workbook.SheetNames;
+          }
           var sheet = workbook.Sheets[sheetName];
           // console.log(sheet)
           vm.rawData = XLSX.utils.sheet_to_json(sheet);
