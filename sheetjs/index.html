@@ -271,7 +271,7 @@
           var workbook = XLSX.read(arrayBuffer, options);
           console.timeEnd();
 
-          var sheetName = workbook.SheetNames
+          var sheetName = workbook.SheetNames[0];
           var sheet = workbook.Sheets[sheetName];
           // console.log(sheet)
           vm.rawData = XLSX.utils.sheet_to_json(sheet);
