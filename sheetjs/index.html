@@ -267,13 +267,19 @@
         var reader = new FileReader();
         reader.onloadend = function (event) {
           var arrayBuffer = reader.result;
-          // var options = { type: 'array' };
-          var options = { type: 'buffer' };
+          var options = { type: 'array' };
+          // var options = { type: 'buffer' };
           var workbook = XLSX.read(arrayBuffer, options);
           console.timeEnd();
 
           var sheetName = workbook.SheetNames
-          var sheet = workbook.Sheets[sheetName];
+          var sheet;
+          if(Array.isArray(sheetName)){
+            sheet = sheetName[0];
+          } else{
+            sheet = sheetName;
+          }
+           
           console.log(sheet)
           vm.rawData = XLSX.utils.sheet_to_json(sheet);
           console.log(vm.rawData);
