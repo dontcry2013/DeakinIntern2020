@@ -266,11 +266,13 @@ var map_province = {"安徽":1,"澳门":2,"北京":3,"重庆":4,"福建":5,"甘�
         if (!files.length) return;
         var file = files[0];
 
+        var result = {};
         console.time();
         var reader = new FileReader();
         reader.onloadend = function (event) {
           var arrayBuffer = reader.result;
           var options = { type: 'array' };
+          // var options = { type: 'buffer' };
           var workbook = XLSX.read(arrayBuffer, options);
           console.timeEnd();
           var sheetName;
@@ -281,8 +283,20 @@ var map_province = {"安徽":1,"澳门":2,"北京":3,"重庆":4,"福建":5,"甘�
           }
           var sheet = workbook.Sheets[sheetName];
           // console.log(sheet)
-          vm.rawData = XLSX.utils.sheet_to_json(sheet);
+          vm.rawData = XLSX.utils.sheet_to_json(sheet, {header:1});
           console.log(vm.rawData);
+          vm.rawData.forEach(function(row, row_index){
+            var k_row = Object.keys(row);
+            var k_value = Object.values(row);
+            k_value.forEach(function(){
+
+            })
+            result['cohort'] = ''
+            result['term'] = ''
+            result['major'] = ''
+
+          })
+          console.log(result);
           vm.createTableData();
           vm.getTime();
 

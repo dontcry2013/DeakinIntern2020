@@ -93,7 +93,7 @@ Day1
      > Double-click to add a classroom, course, teacher, etc.  
      >Click it to set to the specified time  
      >Right-click to deselect
-
+  * * * 
 
  Day4
 
@@ -117,6 +117,46 @@ Day1
     >XLSX.utils.sheet_to_html generates HTML  
     >XLSX.utils.sheet_to_json generates an array of objects  
     >XLSX.utils.sheet_to_formulae generates a list of formulae
+
+   * * * 
+
+ Day5
+
+## Learned on Aug 17  
+
+* ###   AEMG server  
+  +   use Quick Arrange  
+  > Importing timetables by using Quick Arrange
+
+ * ###   Sheet JS 
+     > The learning information is available at: https://sheetjs.com/demo 
+
+
+     > Simulate the entire process of import   
+      >>-Convert xls.files to json files using this link:https://oss.sheetjs.com/sheetjs/  
+      >> -Learn how to read the Json file  
+      >> -Read the Json file to find the location of English classes in the timetable  
+      >> -Based on this template, create a data file that we need  
+      >>> { 'cohort':' 17生物技术(西塔)01班课表1',
+          'term':"2018-2019年第2学期",
+          'major':'专业：生物技术(西塔)',
+          'data':
+          [{
+          'weekday': "星期三",
+          'session':'第一二三节',
+          'detail':'学术英语 Ⅲ —英语综合/(1-2节)1-15周/西塔学院 31-0205/唐涛/无/学术英语 Ⅲ —英语综合-0001/17生物技术(西塔)01班/通必/28/27/未安排'
+          }, {}, {}]
+           }   
+
+
+ * ###   Json  
+      > Website for learning Json :https://www.w3schools.com/js/js_json_intro.asp  
+
+ * ###   JavaScript  
+    >Learn JavaScript at: https://www.w3schools.com/js/js_arrays.asp  
+
+
+
   
 
 
