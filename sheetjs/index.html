@@ -263,6 +263,7 @@
         if (!files.length) return;
         var file = files[0];
 
+        var result = {};
         console.time();
         var reader = new FileReader();
         reader.onloadend = function (event) {
@@ -282,8 +283,17 @@
           vm.rawData = XLSX.utils.sheet_to_json(sheet);
           console.log(vm.rawData);
           vm.rawData.forEach(function(row, row_index){
-            
+            var k_row = Object.keys(row);
+            var k_value = Object.values(row);
+            k_value.forEach(function(){
+              
+            })
+            result['cohort'] = ''
+            result['term'] = ''
+            result['major'] = ''
+
           })
+          console.log(result);
           vm.createTableData();
           vm.getTime();
 
