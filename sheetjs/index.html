@@ -280,13 +280,13 @@
           }
           var sheet = workbook.Sheets[sheetName];
           // console.log(sheet)
-          vm.rawData = XLSX.utils.sheet_to_json(sheet);
+          vm.rawData = XLSX.utils.sheet_to_json(sheet, {header:1});
           console.log(vm.rawData);
           vm.rawData.forEach(function(row, row_index){
             var k_row = Object.keys(row);
             var k_value = Object.values(row);
             k_value.forEach(function(){
-              
+
             })
             result['cohort'] = ''
             result['term'] = ''
