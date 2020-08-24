@@ -63,3 +63,30 @@ mysqlimport --ignore-lines=1(Ignore the first line) --fields-terminated-by=,(Sep
 
 ### Future work
 study https://sheetjs.com/demo
+
+## Learned on Aug 17  
+### What I learn today
+
+* ###   AEMG server  
+  +   use Quick Arrange  
+  > Importing timetables by using Quick Arrange
+
+ * ###   Sheet JS 
+     > The learning information is available at: https://sheetjs.com/demo 
+
+
+     > Simulate the entire process of import   
+      >>-Convert xls.files to json files using this link:https://oss.sheetjs.com/sheetjs/  
+      >> -Learn how to read the Json file  
+      >> -Read the Json file to find the location of English classes in the timetable  
+      >> -Based on this template, create a data file that we need  
+      >>> { 'cohort':' 17生物技术(西塔)01班课表1',
+          'term':"2018-2019年第2学期",
+          'major':'专业：生物技术(西塔)',
+          'data':
+          [{
+          'weekday': "星期三",
+          'session':'第一二三节',
+          'detail':'学术英语 Ⅲ —英语综合/(1-2节)1-15周/西塔学院 31-0205/唐涛/无/学术英语 Ⅲ —英语综合-0001/17生物技术(西塔)01班/通必/28/27/未安排'
+          }, {}, {}]
+           }   
