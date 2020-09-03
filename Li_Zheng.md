@@ -62,7 +62,26 @@
 
 * Learned more about Git using skills
 
+# Day 3/4/5
 
+Try to develop a program to transfer the xslx sheet to array.
 
+Learned some information about JavaScript Array and relevant knowledge
 
+# Day 6
+
++ Inputted the sheet file to the required format.
+
++ Tested the development file and found some bugs need to fix or some things can improve:
+
+  Bug:
+
+  1. Some options cannot show content directly when saving the new object firstly.
+    2. When changing some content, the other content which hasn't be saved will be affected.
+
+    Can improve:
+
+  1. Cannot choose the year when adding the new object. 
+
+  
 
