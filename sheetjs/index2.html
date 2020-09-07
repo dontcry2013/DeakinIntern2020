@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  <script lang="javascript" src="dist/xlsx.full.min.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  
+  <div id="app">
+    <input id="file" type="file" @change="parseExcelFile1" />
+    <div id="result1"></div>
+
+    <template v-for="(value, key, index) in filteredData" v-if="value.length>0">
+      <h2>{{key}}</h2>
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">序号</th>
+            <th scope="col">中文名</th>
+            <th scope="col">姓</th>
+            <th scope="col">名</th>
+            <th scope="col">性别</th>
+            <th scope="col">外方大学专业</th>
+            <th scope="col">其他专业名称</th>
+            <th scope="col">专业方向</th>
+            <th scope="col">其他专业方向</th>
+            <th scope="col">年级</th>
+            <th scope="col">宿舍楼</th>
+            <th scope="col">宿舍房间</th>
+            <th scope="col">选择课程</th>
+            <th scope="col">上课日期</th>
+            <!-- <th scope="col">上课时间</th> -->
+            <template v-for="item in summary[key]">
+              <th>{{item.time}}</th>
+            </template>
+          </tr>
+        </thead>
+        <tbody>
+          <template v-for="(v, k) in value">
+            <tr>
+              <td>{{v.id}}</td>
+              <td>{{v.chineseName}}</td>
+              <td>{{v.familyName}}</td>
+              <td>{{v.firstName}}</td>
+              <td>{{v.gender}}</td>
+              <td>{{v.major}}</td>
+              <td>{{v.otherMajor}}</td>
+              <td>{{v.major2}}</td>
+              <td>{{v.otherMajor2}}</td>
+              <td>{{v.grade}}</td>
+              <td>{{v.apart}}</td>
+              <td>{{v.room}}</td>
+              <td>{{v.course}}</td>
+              <td>{{v.day}}</td>
+              <!-- <td>{{v.startTime}} - {{v.endTime}}</td> -->
+              <template v-for="item in summary[key]">
+                <td v-if="item.ids.includes(v.id)">YES</td>
+                <td v-if="!item.ids.includes(v.id)"></td>
+              </template>
+            </tr>
+            <tr v-if="k == value.length - 1">
+              <td>人数统计</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <template v-for="item in summary[key]" >
+                <td>{{item.ids.length}}</td>
+              </template>
+            </tr>
+          </template>
+        </tbody>
+      </table>
+    </template>
+  </div>
+</body>
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+
+
+<script type="text/babel">
+  var app = new Vue({
+    el: '#app',
+    data: {
+      rawData: {},
+      filteredData: {
+        Mon: [],
+        Tue: [],
+        Wed: [],
+        Thu: [],
+        Fri: [],
+        Sat: [],
+        Sun: [],
+      },
+      summary: {
+        Mon: [],
+        Tue: [],
+        Wed: [],
+        Thu: [],
+        Fri: [],
+        Sat: [],
+        Sun: [],
+      }
+    },
+   
+    methods: {
+      createTableData: function () {
+        let vm = this;
+        let sectionNum = 0;
+        let data = [];
+
+        this.rawData.forEach(item=>{
+          let tmpSectionNum = 0;
+          let index = 0;
+          let id;
+          let chineseName;
+          let familyName;
+          let firstName;
+          let gender;
+          let otherMajor;
+          let otherMajor2;
+          let email;
+          let major;
+          let major2;
+          let grade;
+          let course;
+          let apart;
+          let room;
+       
+          for(var itemColumn in item) {
+            let tmpRow = {};
+            if (itemColumn.includes("序号")) {
+              id = item[itemColumn];
+            }
+            if (itemColumn.includes("中文名")) {
+              chineseName = item[itemColumn];
+            }
+            if (itemColumn.includes("宿舍楼")) {
+              apart = item[itemColumn];
+            }
+            if (itemColumn.includes("宿舍房间")) {
+              room = item[itemColumn];
+            }
+            if (itemColumn.includes("姓(拼音")) {
+              familyName = item[itemColumn];
+            }
+            if(itemColumn.includes("名(拼音")) {
+              firstName = item[itemColumn];
+            }
+            if(itemColumn.includes("性别")) {
+              gender = item[itemColumn];
+            }
+            if(itemColumn.includes("电子邮件")) {
+              email = item[itemColumn];
+            }
+            if(itemColumn.includes("大学专业")) {
+              major = item[itemColumn];
+            }
+            if (itemColumn.includes("其他专业名称")) {
+              otherMajor = item[itemColumn];
+            }
+            if(itemColumn.includes("专业方向：")) {//中文冒号
+              major2 = item[itemColumn]; 
+            }
+            if (itemColumn.includes("其他专业方向")) {
+              otherMajor2 = item[itemColumn];
+            }
+            if (itemColumn.includes("年级")) {
+              grade = item[itemColumn];
+            }
+            if(itemColumn.includes("已选海外大学课程") && !itemColumn.includes("星期") && item[itemColumn] != "(空)") {
+              course = item[itemColumn];
+            }
+            if(itemColumn.includes("星期") && item[itemColumn] != "(空)" && item[itemColumn] != "(跳过)" && item[itemColumn] != -3) {
+              tmpRow = {
+                id,
+                chineseName,
+                familyName,
+                firstName,
+                gender,
+                email,
+                major,
+                otherMajor,
+                major2,
+                otherMajor2,
+                grade,
+                course,
+                apart,
+                room,
+                day: item[itemColumn],
+                startTime: item[Object.keys(item)[index+1]] + ":" + item[Object.keys(item)[index+2]],
+                endTime: item[Object.keys(item)[index+3]] + ":" + item[Object.keys(item)[index+4]]
+              };            
+              vm.filteredData[item[itemColumn]].push(tmpRow)  ;
+            }
+            //console.log(vm.filteredData)
+            for (let day in vm.filteredData) {
+              //console.log(vm.filteredData[day])
+              vm.filteredData[day].forEach(record => {
+                if(record.id == id) {
+                  record.chineseName = chineseName;
+                  record.apart = apart;
+                  record.room = room;
+                }
+              });
+            };
+            index++;
+          }
+        });
+        console.log(vm.filteredData)
+      },
+      getTime: function () {
+        let vm = this;
+
+        for (var key in vm.filteredData ){
+          vm.filteredData[key].forEach(record => {
+            let timeRecord = {
+              time: "",
+              ids: [],
+            };
+
+            let exist = false;
+            vm.summary[key].forEach(item => {
+              if(item.time == record.startTime + " - " + record.endTime) {
+                item.ids.push(record.id);
+                exist = true;
+              }
+            });
+
+            if(!exist) {
+              timeRecord.time = record.startTime + " - " + record.endTime;
+              timeRecord.ids.push(record.id);
+              vm.summary[key].push(timeRecord);
+            }
+          });
+        };
+      },
+      addExtraTh: function (key) {
+        return `<th>asd<th>`
+      },
+      parseExcelFile1: function () {
+        var vm = this;
+
+        var files = event.target.files || [];
+        if (!files.length) return;
+        var file = files[0];
+        
+        var result={};
+        var session ="";
+        var weekday=""
+        var detail = ""
+        var type = 0
+        var data = []
+        console.time();
+        var reader = new FileReader();
+        reader.onloadend = function (event) {
+          var arrayBuffer = reader.result;
+          var options = { type: 'array' };
+          // var options = { type: 'buffer' };
+          var workbook = XLSX.read(arrayBuffer, options);
+          console.timeEnd();
+          var sheetName;
+          if(Array.isArray(workbook.SheetNames)){
+            sheetName = workbook.SheetNames[0];
+          } else{
+            sheetName = workbook.SheetNames;
+          }
+          var sheet = workbook.Sheets[sheetName];
+          // console.log(sheet)
+          vm.rawData = XLSX.utils.sheet_to_json(sheet, {header:1});
+          var week = vm.rawData[1]
+          vm.rawData.some(function(value,index)
+         {
+            var k_value = value;
+            if(index == 0){
+                var string = k_value[0].toString();
+                var str = ' ';
+                var stringarray =(string.split(str));
+                result['cohort'] = stringarray[42];
+                result['term'] = stringarray[0];
+                result['major'] = stringarray[74];
+            }
+            if(index>=2 && index <=7){
+                for(var i =0; i <= 6; i++){
+                    var classes = k_value[i];
+                    if(classes != null){
+                    var string2 = classes.toString();
+                    if(string2.indexOf("英语") != -1){
+                        var classes2 = (classes.split("\r"))
+                        detail = classes2[0];
+                        weekday = week[i]
+                        session = k_value[1];
+                        if(string2.indexOf("综合") != -1){
+                            type = 1
+                        }
+                        else if(string2.indexOf("口语") != -1)
+                 {
+                   type = 2
+                 }
+                 else if(string2.indexOf("workshop") != -1)
+                 {
+                  type = 3
+                 }
+                var obj ={
+                    weekday: weekday,
+                    session: session,
+                    detail: detail,
+                    type:type
+                }
+                    data.push(obj);
+                }
+                }
+                }
+            }
+          })
+          result['data'] = data
+          console.log(JSON.stringify(result))
+          vm.createTableData();
+          vm.getTime();
+
+          //var result1 = document.querySelector('#result1');
+          //result1.innerHTML = XLSX.utils.sheet_to_html(sheet);
+        };
+        reader.readAsArrayBuffer(file);
+      },
+    },
+  })
+</script>
