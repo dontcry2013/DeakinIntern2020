@@ -14,79 +14,6 @@
   
   <div id="app">
     <input id="file" type="file" @change="parseExcelFile1" />
-    <div id="result1"></div>
-
-    <template v-for="(value, key, index) in filteredData" v-if="value.length>0">
-      <h2>{{key}}</h2>
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">序号</th>
-            <th scope="col">中文名</th>
-            <th scope="col">姓</th>
-            <th scope="col">名</th>
-            <th scope="col">性别</th>
-            <th scope="col">外方大学专业</th>
-            <th scope="col">其他专业名称</th>
-            <th scope="col">专业方向</th>
-            <th scope="col">其他专业方向</th>
-            <th scope="col">年级</th>
-            <th scope="col">宿舍楼</th>
-            <th scope="col">宿舍房间</th>
-            <th scope="col">选择课程</th>
-            <th scope="col">上课日期</th>
-            <!-- <th scope="col">上课时间</th> -->
-            <template v-for="item in summary[key]">
-              <th>{{item.time}}</th>
-            </template>
-          </tr>
-        </thead>
-        <tbody>
-          <template v-for="(v, k) in value">
-            <tr>
-              <td>{{v.id}}</td>
-              <td>{{v.chineseName}}</td>
-              <td>{{v.familyName}}</td>
-              <td>{{v.firstName}}</td>
-              <td>{{v.gender}}</td>
-              <td>{{v.major}}</td>
-              <td>{{v.otherMajor}}</td>
-              <td>{{v.major2}}</td>
-              <td>{{v.otherMajor2}}</td>
-              <td>{{v.grade}}</td>
-              <td>{{v.apart}}</td>
-              <td>{{v.room}}</td>
-              <td>{{v.course}}</td>
-              <td>{{v.day}}</td>
-              <!-- <td>{{v.startTime}} - {{v.endTime}}</td> -->
-              <template v-for="item in summary[key]">
-                <td v-if="item.ids.includes(v.id)">YES</td>
-                <td v-if="!item.ids.includes(v.id)"></td>
-              </template>
-            </tr>
-            <tr v-if="k == value.length - 1">
-              <td>人数统计</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <template v-for="item in summary[key]" >
-                <td>{{item.ids.length}}</td>
-              </template>
-            </tr>
-          </template>
-        </tbody>
-      </table>
-    </template>
   </div>
 </body>
 </html>
@@ -99,163 +26,8 @@
 <script type="text/babel">
   var app = new Vue({
     el: '#app',
-    data: {
-      rawData: {},
-      filteredData: {
-        Mon: [],
-        Tue: [],
-        Wed: [],
-        Thu: [],
-        Fri: [],
-        Sat: [],
-        Sun: [],
-      },
-      summary: {
-        Mon: [],
-        Tue: [],
-        Wed: [],
-        Thu: [],
-        Fri: [],
-        Sat: [],
-        Sun: [],
-      }
-    },
    
     methods: {
-      createTableData: function () {
-        let vm = this;
-        let sectionNum = 0;
-        let data = [];
-
-        this.rawData.forEach(item=>{
-          let tmpSectionNum = 0;
-          let index = 0;
-          let id;
-          let chineseName;
-          let familyName;
-          let firstName;
-          let gender;
-          let otherMajor;
-          let otherMajor2;
-          let email;
-          let major;
-          let major2;
-          let grade;
-          let course;
-          let apart;
-          let room;
-       
-          for(var itemColumn in item) {
-            let tmpRow = {};
-            if (itemColumn.includes("序号")) {
-              id = item[itemColumn];
-            }
-            if (itemColumn.includes("中文名")) {
-              chineseName = item[itemColumn];
-            }
-            if (itemColumn.includes("宿舍楼")) {
-              apart = item[itemColumn];
-            }
-            if (itemColumn.includes("宿舍房间")) {
-              room = item[itemColumn];
-            }
-            if (itemColumn.includes("姓(拼音")) {
-              familyName = item[itemColumn];
-            }
-            if(itemColumn.includes("名(拼音")) {
-              firstName = item[itemColumn];
-            }
-            if(itemColumn.includes("性别")) {
-              gender = item[itemColumn];
-            }
-            if(itemColumn.includes("电子邮件")) {
-              email = item[itemColumn];
-            }
-            if(itemColumn.includes("大学专业")) {
-              major = item[itemColumn];
-            }
-            if (itemColumn.includes("其他专业名称")) {
-              otherMajor = item[itemColumn];
-            }
-            if(itemColumn.includes("专业方向：")) {//中文冒号
-              major2 = item[itemColumn]; 
-            }
-            if (itemColumn.includes("其他专业方向")) {
-              otherMajor2 = item[itemColumn];
-            }
-            if (itemColumn.includes("年级")) {
-              grade = item[itemColumn];
-            }
-            if(itemColumn.includes("已选海外大学课程") && !itemColumn.includes("星期") && item[itemColumn] != "(空)") {
-              course = item[itemColumn];
-            }
-            if(itemColumn.includes("星期") && item[itemColumn] != "(空)" && item[itemColumn] != "(跳过)" && item[itemColumn] != -3) {
-              tmpRow = {
-                id,
-                chineseName,
-                familyName,
-                firstName,
-                gender,
-                email,
-                major,
-                otherMajor,
-                major2,
-                otherMajor2,
-                grade,
-                course,
-                apart,
-                room,
-                day: item[itemColumn],
-                startTime: item[Object.keys(item)[index+1]] + ":" + item[Object.keys(item)[index+2]],
-                endTime: item[Object.keys(item)[index+3]] + ":" + item[Object.keys(item)[index+4]]
-              };            
-              vm.filteredData[item[itemColumn]].push(tmpRow)  ;
-            }
-            //console.log(vm.filteredData)
-            for (let day in vm.filteredData) {
-              //console.log(vm.filteredData[day])
-              vm.filteredData[day].forEach(record => {
-                if(record.id == id) {
-                  record.chineseName = chineseName;
-                  record.apart = apart;
-                  record.room = room;
-                }
-              });
-            };
-            index++;
-          }
-        });
-        console.log(vm.filteredData)
-      },
-      getTime: function () {
-        let vm = this;
-
-        for (var key in vm.filteredData ){
-          vm.filteredData[key].forEach(record => {
-            let timeRecord = {
-              time: "",
-              ids: [],
-            };
-
-            let exist = false;
-            vm.summary[key].forEach(item => {
-              if(item.time == record.startTime + " - " + record.endTime) {
-                item.ids.push(record.id);
-                exist = true;
-              }
-            });
-
-            if(!exist) {
-              timeRecord.time = record.startTime + " - " + record.endTime;
-              timeRecord.ids.push(record.id);
-              vm.summary[key].push(timeRecord);
-            }
-          });
-        };
-      },
-      addExtraTh: function (key) {
-        return `<th>asd<th>`
-      },
       parseExcelFile1: function () {
         var vm = this;
 
@@ -276,7 +48,6 @@
           var options = { type: 'array' };
           // var options = { type: 'buffer' };
           var workbook = XLSX.read(arrayBuffer, options);
-          console.timeEnd();
           var sheetName;
           if(Array.isArray(workbook.SheetNames)){
             sheetName = workbook.SheetNames[0];
@@ -285,29 +56,30 @@
           }
           var sheet = workbook.Sheets[sheetName];
           // console.log(sheet)
-          vm.rawData = XLSX.utils.sheet_to_json(sheet, {header:1});
-          var week = vm.rawData[1]
-          vm.rawData.some(function(value,index)
+          vm.rawData = XLSX.utils.sheet_to_json(sheet, {header:1}); 
+          var week = vm.rawData[1]  //遍历整个表格形成数组
+          vm.rawData.some(function(value,index)//遍历形成的所有数组
          {
             var k_value = value;
-            if(index == 0){
+            if(index == 0){ //当遍历到第一个数组的时候（获取表格的基本信息，包括年级，专业等）
                 var string = k_value[0].toString();
                 var str = ' ';
-                var stringarray =(string.split(str));
-                result['cohort'] = stringarray[42];
-                result['term'] = stringarray[0];
-                result['major'] = stringarray[74];
+                var StringArray =(string.split(str)); //以str中的内容为标志隔开字符串
+                result['cohort'] = StringArray[42];
+                result['term'] = StringArray[0];
+                result['major'] = StringArray[74];
             }
-            if(index>=2 && index <=7){
+            if(index>=2 && index <=7){ //当遍历到第三个到第七个数组（获取课程）
                 for(var i =0; i <= 6; i++){
                     var classes = k_value[i];
                     if(classes != null){
-                    var string2 = classes.toString();
-                    if(string2.indexOf("英语") != -1){
-                        var classes2 = (classes.split("\r"))
+                    var string2 = classes.toString();//当有课程的时候存入变量中
+                    if(string2.indexOf("英语") != -1){//判断当前课程是否为英语课
+                        var classes2 = (classes.split("\r"))//以“”中的内容为标志隔开字符串（因为有些英语课下面还有其他课程，用这个方法与其他课程区分开）
                         detail = classes2[0];
-                        weekday = week[i]
-                        session = k_value[1];
+                        weekday = week[i]//课程对应的星期
+                        session = k_value[1];//课程对应的时间（该信息是k_value的在第二个数组中）
+                        //英语课分类
                         if(string2.indexOf("综合") != -1){
                             type = 1
                         }
@@ -319,22 +91,20 @@
                  {
                   type = 3
                  }
-                var obj ={
+                var obj ={ //声明结构，并且赋值
                     weekday: weekday,
                     session: session,
                     detail: detail,
                     type:type
                 }
-                    data.push(obj);
+                    data.push(obj); //存入变量
                 }
                 }
                 }
             }
           })
           result['data'] = data
-          console.log(JSON.stringify(result))
-          vm.createTableData();
-          vm.getTime();
+          console.log(JSON.stringify(result))//打印
 
           //var result1 = document.querySelector('#result1');
           //result1.innerHTML = XLSX.utils.sheet_to_html(sheet);
