@@ -85,3 +85,16 @@ Learned some information about JavaScript Array and relevant knowledge
 
   
 
+# Day 7
+
+Continue to organize the database and input the data
+
+
+
+# Day 8
+
+* Completed the database input work
+* Found some bugs can fix or improve:
+  1. The checkbox should add a null option that if users choose the wrong one but there should not, they can change to the blank option to reset the value.
+  2. There should add admission for a user to add many objectives in one time rather than one by one.
+
