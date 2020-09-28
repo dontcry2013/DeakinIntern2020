@@ -58,55 +58,49 @@
           // console.log(sheet)
           vm.rawData = XLSX.utils.sheet_to_json(sheet, {header:1}); 
           console.log(vm.rawData)
-          var week = vm.rawData[1]  //遍历整个表格形成数组
+          var week = vm.rawData[2] 
+          console.log(week) //遍历整个表格形成数组
           vm.rawData.some(function(value,index)//遍历形成的所有数组
          {
             var k_value = value;
-            if(index == 0){ //当遍历到第一个数组的时候（获取表格的基本信息，包括年级，专业等）
-                var string = k_value[0].toString();
+            console.log(k_value);
+            if(index === 0)
+            {
+                var cohort = k_value[0].toString();
                 var str = ' ';
-                var StringArray =(string.split(str)); //以str中的内容为标志隔开字符串
-                result['cohort'] = StringArray[42];
-                result['term'] = StringArray[0];
-                result['major'] = StringArray[74];
+                var StringArray =(cohort.split(str));
+                var major = StringArray[1];
+                result['cohort'] = cohort ;
+                result['major'] = major;
             }
-            if(index>=2 && index <=7){ //当遍历到第三个到第七个数组（获取课程）
+            if(index === 1)
+            {
+                var term = k_value[1].toString();
+                result['term'] = term;
+            }
+            if(index >= 3 && index <= 8)
+            {
                 for(var i =0; i <= 6; i++){
                     var classes = k_value[i];
                     if(classes != null){
-                    var string2 = classes.toString();//当有课程的时候存入变量中
-                    if(string2.indexOf("英语") != -1){//判断当前课程是否为英语课
-                        var classes2 = (classes.split("\r"))//以“”中的内容为标志隔开字符串（因为有些英语课下面还有其他课程，用这个方法与其他课程区分开）
-                        detail = classes2[0];
-                        weekday = week[i]//课程对应的星期
-                        session = k_value[1];//课程对应的时间（该信息是k_value的在第二个数组中）
-                        //英语课分类
-                        if(string2.indexOf("综合") != -1){
-                            type = 1
+                    var classes2 = classes.toString();
+                    if(classes2.indexOf("英语") != -1){
+                        weekday = week[i];
+                        session = k_value[0];
+                        detail = classes2;
+                        var obj ={ //声明结构，并且赋值 
+                            weekday: weekday,
+                            session: session,
+                            detail: detail,
                         }
-                        else if(string2.indexOf("口语") != -1)
-                 {
-                   type = 2
-                 }
-                 else if(string2.indexOf("workshop") != -1)
-                 {
-                  type = 3
-                 }
-                var obj ={ //声明结构，并且赋值
-                    weekday: weekday,
-                    session: session,
-                    detail: detail,
-                    type:type
-                }
-                    data.push(obj); //存入变量
-                }
-                }
+                        data.push(obj);
+                    }
                 }
             }
+        }
           })
           result['data'] = data
           console.log(JSON.stringify(result))//打印
-
           //var result1 = document.querySelector('#result1');
           //result1.innerHTML = XLSX.utils.sheet_to_html(sheet);
         };
