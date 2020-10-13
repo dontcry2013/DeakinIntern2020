@@ -171,4 +171,15 @@ study https://sheetjs.com/demo
      1. .some() ----- Iterates through the entire array, skipping if the value is null, rendering empty in the array.
      2. string.split(str) ----- The string is divided into two parts with str as the flag. One part is string[0], and the other part is string[1].
      3. .indexOf(str) ------ Determine if there is str in the string
+     
      ```
+
+## 14 September 2020
+### What I learned today
+
+1. Adding comments to the code
+2. Specification of variable and function naming in code
+
+```
+https://trello.com/b/nJ3sd729/2020-deakin-intern
+```
