@@ -236,3 +236,23 @@ Continue to develop course information importation procedures for another univer
           console.log(JSON.stringify(result))// print out
 ```
 
+##  05/10/2020
+### What I learned today
+
+1. Learning SQL Operation Statements
+```
+1. SELECT ?(A value that you want to query) FROM table name
+2. SELECT column name FROM table name WHERE column operator value
+3. AND and OR can combine two or more conditions in a WHERE clause. 
+If the first and second conditions are both true, the AND operator displays one row. 
+If only one of the first and second conditions is true, the OR operator displays a row.
+4. The ORDER BY statement is used to sort the result set by the columns you specify.
+The ORDER BY statement defaults to sorting the rows in ascending order.
+If you want the rows to be sorted in descending order, you can use the DESC keyword.
+5. INSERT INTO statement is used to insert a new row into the table.
+INSERT INTO table name VALUES (value 1, value 2, ....)
+6. The Update statement is used to modify the data in the table.
+UPDATE table name SET column name = new value WHERE column name = some value
+7. The DELETE statement is used to delete rows from the table.
+DELETE FROM table name WHERE column name = value
+```
