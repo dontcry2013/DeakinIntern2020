@@ -82,9 +82,9 @@ study https://sheetjs.com/demo
      2.  Simulate the entire process of import   
      ```
       1. -Convert xls.files to json files using this link:https://oss.sheetjs.com/sheetjs/  
-      2.  -Learn how to read the Json file  
-      3.  -Read the Json file to find the location of English classes in the timetable  
-      4.  -Based on this template, create a data file that we need  
+      2. -Learn how to read the Json file  
+      3. -Read the Json file to find the location of English classes in the timetable  
+      4. -Based on this template, create a data file that we need  
            { 'cohort':' 17生物技术(西塔)01班课表1',
           'term':"2018-2019年第2学期",
           'major':'专业：生物技术(西塔)',
