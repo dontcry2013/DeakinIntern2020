@@ -60,6 +60,7 @@ mysqlimport --ignore-lines=1(Ignore the first line) --fields-terminated-by=,(Sep
 ### Update 
 1. All classrooms that need to be used have been organized and added to the system.
 2. Since the save button may cause data loss, press the download button to download the data before saving again so that no data is lost.
+3. Connect with Southwestern University customers to confirm customer needs.
 
 ### Future work
 study https://sheetjs.com/demo
@@ -67,11 +68,16 @@ study https://sheetjs.com/demo
 ## Learned on Aug 17  
 ### What I learn today
 
+1. Collate all the course information that needs to be entered on the same spreadsheet. Web meetings with the Southwest University client to confirm the accuracy of the data
+
+## 24 August 2020
+### What I learned today
+
  1. AEMG server  
   +   use Quick Arrange  
   > Importing timetables by using Quick Arrange
-
- 2. Sheet JS 
+  
+  2.2. Sheet JS 
      1.  The learning information is available at: https://sheetjs.com/demo 
      2.  Simulate the entire process of import   
      ```
@@ -90,3 +96,5 @@ study https://sheetjs.com/demo
           }, {}, {}]
            }   
      ```
+
+     
