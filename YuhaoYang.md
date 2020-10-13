@@ -97,4 +97,16 @@ study https://sheetjs.com/demo
            }   
      ```
 
+## 31 August 2020
+### What I learned today
+
+1. Development of course information import program
+   Figure out the logical relationship between tables and arrays
+   ```
+   arrays[table row] = [[table column],[table column],[table column]......]
+   .
+   .
+   .
+   ```
+
      
