@@ -109,4 +109,66 @@ study https://sheetjs.com/demo
    .
    ```
 
-     
+## 07 September 2020
+### What I learned today
+
+1. Continued development of course information import procedures
+   Southwest University course information program has been developed
+   ```
+    vm.rawData = XLSX.utils.sheet_to_json(sheet, {header:1}); 
+          console.log(vm.rawData)
+          var week = vm.rawData[1]  //terate through the entire table to form an array.
+          vm.rawData.some(function(value,index)//Iterate over all the arrays formed.
+         {
+            var k_value = value;
+            if(index == 0){ //When traversing to the first array (to get basic information about the form, including grade, major, etc.)
+                var string = k_value[0].toString();
+                var str = ' ';
+                var StringArray =(string.split(str)); //Separate strings by their contents in str.
+                result['cohort'] = StringArray[42];
+                result['term'] = StringArray[0];
+                result['major'] = StringArray[74];
+            }
+            if(index>=2 && index <=7){ //When iterating through the third through seventh arrays (getting the course)
+                for(var i =0; i <= 6; i++){
+                    var classes = k_value[i];
+                    if(classes != null){
+                    var string2 = classes.toString();//Deposit in variable when a course is available
+                    if(string2.indexOf("英语") != -1){//Determine if the current course is an English course
+                        var classes2 = (classes.split("\r"))//Separate the strings with the contents of the "" as a flag (because some English classes have other classes underneath them, use this method to distinguish them from other classes)
+                        detail = classes2[0];
+                        weekday = week[i]//Week of the course
+                        session = k_value[1];//The time corresponding to the course (this information is k_value in the second array).
+                        //英语课分类
+                        if(string2.indexOf("综合") != -1){
+                            type = 1
+                        }
+                        else if(string2.indexOf("口语") != -1)
+                 {
+                   type = 2
+                 }
+                 else if(string2.indexOf("workshop") != -1)
+                 {
+                  type = 3
+                 }
+                var obj ={ //declaration structure, and assign a value
+                    weekday: weekday,
+                    session: session,
+                    detail: detail,
+                    type:type
+                }
+                    data.push(obj); //Deposit variables
+                }
+                }
+                }
+            }
+          })
+          result['data'] = data
+          console.log(JSON.stringify(result))//print out
+   ```
+     2. Some important program statements
+     ```
+     1. .some() ----- Iterates through the entire array, skipping if the value is null, rendering empty in the array.
+     2. string.split(str) ----- The string is divided into two parts with str as the flag. One part is string[0], and the other part is string[1].
+     3. .indexOf(str) ------ Determine if there is str in the string
+     ```
