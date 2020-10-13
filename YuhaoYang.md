@@ -73,13 +73,13 @@ study https://sheetjs.com/demo
 ## 24 August 2020
 ### What I learned today
 
- 1. AEMG server  
+1. AEMG server  
   +   use Quick Arrange  
   > Importing timetables by using Quick Arrange
   
-  2.2. Sheet JS 
-     1.  The learning information is available at: https://sheetjs.com/demo 
-     2.  Simulate the entire process of import   
+2. Sheet JS 
+   1.  The learning information is available at: https://sheetjs.com/demo 
+   2.  Simulate the entire process of import   
      ```
       1. -Convert xls.files to json files using this link:https://oss.sheetjs.com/sheetjs/  
       2. -Learn how to read the Json file  
