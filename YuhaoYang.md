@@ -183,3 +183,56 @@ study https://sheetjs.com/demo
 ```
 https://trello.com/b/nJ3sd729/2020-deakin-intern
 ```
+
+## 21/09/2020 & 28/09/2020
+### What I learned today
+
+Continue to develop course information importation procedures for another university
+```
+ vm.rawData = XLSX.utils.sheet_to_json(sheet, {header:1}); 
+          console.log(vm.rawData)
+          var week = vm.rawData[2] 
+          console.log(week) //遍历整个表格形成数组
+          vm.rawData.some(function(value,index)//遍历形成的所有数组
+         {
+            var k_value = value;
+            console.log(k_value);
+            if(index === 0)
+            {
+                var cohort = k_value[0].toString();
+                var str = ' ';
+                var StringArray =(cohort.split(str));
+                var major = StringArray[1];
+                result['cohort'] = cohort ;
+                result['major'] = major;
+            }
+            if(index === 1)
+            {
+                var term = k_value[1].toString();
+                result['term'] = term;
+            }
+            if(index >= 3 && index <= 8)
+            {
+                for(var i =0; i <= 6; i++){
+                    var classes = k_value[i];
+                    if(classes != null){
+                    var classes2 = classes.toString();
+                    if(classes2.indexOf("英语") != -1){
+                        weekday = week[i];
+                        session = k_value[0];
+                        detail = classes2;
+                        var obj ={ //declaration structure, and assign a value 
+                            weekday: weekday,
+                            session: session,
+                            detail: detail,
+                        }
+                        data.push(obj);
+                    }
+                }
+            }
+        }
+          })
+          result['data'] = data
+          console.log(JSON.stringify(result))// print out
+```
+
